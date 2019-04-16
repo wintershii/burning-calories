@@ -49,10 +49,32 @@ public class UserServiceImpl implements IUserService {
     public ServerResponse<User> login(String username, String password) {
         User user = userMapper.login(username,password);
         if (user != null) {
+            user.setPassword("");
             return ServerResponse.createBySuccess(user);
         }
         return ServerResponse.createByErrorMessage("登录失败!请检查用户名或密码");
     }
+
+
+    @Override
+    public ServerResponse updateAvatar(String url, Integer userId) {
+        int resultCount = userMapper.updateAvatar(url,userId);
+        if (resultCount > 0) {
+            return ServerResponse.createBySuccess("修改头像信息成功!");
+        }
+        return ServerResponse.createByErrorMessage("修改头像信息失败!");
+    }
+
+
+    @Override
+    public ServerResponse updateBackgurand(String url, Integer userId) {
+        int resultCount = userMapper.updateBackgurand(url,userId);
+        if (resultCount > 0) {
+            return ServerResponse.createBySuccess("修改背景图片信息成功!");
+        }
+        return ServerResponse.createByErrorMessage("修改背景图片信息失败!");
+    }
+
 
     private ServerResponse<String> checkValid(String data, String type) {
         //type: 1-用户名 2-手机号 3-邮箱

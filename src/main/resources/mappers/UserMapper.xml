@@ -151,4 +151,16 @@
     and password = #{password}
   </select>
 
+  <update id="updateAvatar" parameterType="map">
+    update burning_user
+    set avatar_url = #{url}
+    where id = #{userId}
+  </update>
+
+
+  <update id="updateBackgurand" parameterType="map">
+    update burning_user
+    set avatar_url = #{url}
+    where id = #{userId}
+  </update>
 </mapper>

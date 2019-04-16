@@ -22,17 +22,18 @@ CREATE TABLE burning_user (
   DEFAULT CHARSET = utf8;
 
 
-
 --饮食表
 CREATE TABLE burning_food (
   id int(11) PRIMARY KEY AUTO_INCREMENT ,
+  user_id int(11) NOT NULL ,
   foodname varchar(200) NOT NULL COMMENT '食物名',
   update_method int(1) NOT NULL COMMENT '上传方式: 1-拍照上传 0-手动添加',
   food_image varchar(500) NOT NULL COMMENT '食物图片',
   calories int NOT NULL COMMENT '卡路里',
   food_time datetime NOT NULL COMMENT '入食时间',
   create_time datetime NOT NULL COMMENT '发布时间',
-  UNIQUE time_index (food_time) USING BTREE
+  UNIQUE time_index (food_time) USING BTREE,
+
 )
   ENGINE = InnoDB
   AUTO_INCREMENT = 1000

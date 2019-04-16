@@ -1,6 +1,8 @@
 package com.burn.burningcalories.common;
 
 public class Const {
+    public static  final String CURRENT_USER = "currentUser";
+
     public static final String USERNAME = "username";
     public static final String PHONE = "phone";
     public static final String EMAIL = "email";

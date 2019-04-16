@@ -15,4 +15,7 @@ public interface UserMapper {
 
     User login(@Param("username") String username, @Param("password") String password);
 
+    int updateAvatar(@Param("url") String url, @Param("userId") Integer userId);
+
+    int updateBackgurand(@Param("url") String url, @Param("userId") Integer userId);
 }

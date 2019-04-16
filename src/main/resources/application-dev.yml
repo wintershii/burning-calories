@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8000
 
 spring:
   datasource:
@@ -8,7 +8,12 @@ spring:
     url: jdbc:mysql://localhost:3306/burning_calories?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  http:
 
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 mybatis:
   mapper-locations: classpath:mappers/*Mapper.xml
   type-aliases-package: com.burn.domain
@@ -19,3 +24,4 @@ logging:
     com:
       example:
         mapper : debug
+
