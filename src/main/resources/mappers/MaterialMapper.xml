@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.burn.burningcalories.dao.MaterialMapper">
+  <resultMap id="BaseResultMap" type="com.burn.burningcalories.domain.Material">
+    <constructor>
+      <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="cn_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="en_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="colores" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="ingredient" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, cn_name, en_name, colores, type, ingredient
+  </sql>
+  <insert id="insert" parameterType="com.burn.burningcalories.domain.Material">
+    insert into burning_material (id, cn_name, en_name, 
+      colores, type, ingredient
+      )
+    values (#{id,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
+      #{colores,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{ingredient,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.burn.burningcalories.domain.Material">
+    insert into burning_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="cnName != null">
+        cn_name,
+      </if>
+      <if test="enName != null">
+        en_name,
+      </if>
+      <if test="colores != null">
+        colores,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="ingredient != null">
+        ingredient,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cnName != null">
+        #{cnName,jdbcType=VARCHAR},
+      </if>
+      <if test="enName != null">
+        #{enName,jdbcType=VARCHAR},
+      </if>
+      <if test="colores != null">
+        #{colores,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ingredient != null">
+        #{ingredient,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getMaterialByEnName" parameterType="string" resultType="com.burn.burningcalories.domain.Material" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from burning_material
+    where en_name = #{enName}
+  </select>
+
+</mapper>

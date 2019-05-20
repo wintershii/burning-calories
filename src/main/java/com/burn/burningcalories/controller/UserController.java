@@ -7,6 +7,8 @@ import com.burn.burningcalories.service.IFileService;
 import com.burn.burningcalories.service.IUserService;
 import com.burn.burningcalories.util.MD5Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,6 +36,10 @@ public class UserController {
 
     @RequestMapping(value = "/register",method = RequestMethod.POST)
     public ServerResponse register(User user) {
+        if (user.getUsername() == null || user.getPassword() == null || user.getBirth() == null || user.getGender() == null
+        || user.getEmail() == null || user.getPhone() == null) {
+            return ServerResponse.createByErrorMessage("参数错误!");
+        }
         user.setAvatarUrl(Const.default_avatar_url);
         user.setBackgurandUrl(Const.default_backgurand_url);
         user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
