@@ -25,10 +25,8 @@ public class FileServiceImpl implements IFileService {
     public String upload(MultipartFile file) {
         String fileName = file.getOriginalFilename();
 
-        String fileExtensionName = fileName.substring(fileName.lastIndexOf(".") + 1);
 
         logger.info("开始上传文件,上传的文件名:" + fileName);
-
 
 
         String uploadName = FileUtil.upload(file);

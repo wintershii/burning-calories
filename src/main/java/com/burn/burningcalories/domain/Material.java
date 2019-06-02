@@ -7,19 +7,25 @@ public class Material {
 
     private String enName;
 
-    private Integer colores;
+    private Integer calories;
 
     private Integer type;
 
     private String ingredient;
 
-    public Material(Integer id, String cnName, String enName, Integer colores, Integer type, String ingredient) {
+    private Integer quality;
+
+    private String unit;
+
+    public Material(Integer id, String cnName, String enName, Integer calories, Integer type, String ingredient, Integer quality, String unit) {
         this.id = id;
         this.cnName = cnName;
         this.enName = enName;
-        this.colores = colores;
+        this.calories = calories;
         this.type = type;
         this.ingredient = ingredient;
+        this.quality = quality;
+        this.unit = unit;
     }
 
     public Material() {
@@ -50,12 +56,12 @@ public class Material {
         this.enName = enName == null ? null : enName.trim();
     }
 
-    public Integer getColores() {
-        return colores;
+    public Integer getCalories() {
+        return calories;
     }
 
-    public void setColores(Integer colores) {
-        this.colores = colores;
+    public void setCalories(Integer calories) {
+        this.calories = calories;
     }
 
     public Integer getType() {
@@ -72,5 +78,21 @@ public class Material {
 
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient == null ? null : ingredient.trim();
+    }
+
+    public Integer getQuality() {
+        return quality;
+    }
+
+    public void setQuality(Integer quality) {
+        this.quality = quality;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
     }
 }

@@ -6,21 +6,24 @@
       <arg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="cn_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="en_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="colores" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="calories" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="ingredient" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="quality" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="unit" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, cn_name, en_name, colores, type, ingredient
+    id, cn_name, en_name, calories, type, ingredient, quality, unit
   </sql>
+
   <insert id="insert" parameterType="com.burn.burningcalories.domain.Material">
     insert into burning_material (id, cn_name, en_name, 
-      colores, type, ingredient
-      )
+      calories, type, ingredient, 
+      quality, unit)
     values (#{id,jdbcType=INTEGER}, #{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, 
-      #{colores,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{ingredient,jdbcType=VARCHAR}
-      )
+      #{calories,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{ingredient,jdbcType=VARCHAR}, 
+      #{quality,jdbcType=INTEGER}, #{unit,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.burn.burningcalories.domain.Material">
     insert into burning_material
@@ -34,14 +37,20 @@
       <if test="enName != null">
         en_name,
       </if>
-      <if test="colores != null">
-        colores,
+      <if test="calories != null">
+        calories,
       </if>
       <if test="type != null">
         type,
       </if>
       <if test="ingredient != null">
         ingredient,
+      </if>
+      <if test="quality != null">
+        quality,
+      </if>
+      <if test="unit != null">
+        unit,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -54,8 +63,8 @@
       <if test="enName != null">
         #{enName,jdbcType=VARCHAR},
       </if>
-      <if test="colores != null">
-        #{colores,jdbcType=INTEGER},
+      <if test="calories != null">
+        #{calories,jdbcType=INTEGER},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -63,10 +72,16 @@
       <if test="ingredient != null">
         #{ingredient,jdbcType=VARCHAR},
       </if>
+      <if test="quality != null">
+        #{quality,jdbcType=INTEGER},
+      </if>
+      <if test="unit != null">
+        #{unit,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
 
-  <select id="getMaterialByEnName" parameterType="string" resultType="com.burn.burningcalories.domain.Material" resultMap="BaseResultMap">
+  <select id="getMaterialByEnName" resultMap="BaseResultMap" parameterType="string">
     select
     <include refid="Base_Column_List"/>
     from burning_material

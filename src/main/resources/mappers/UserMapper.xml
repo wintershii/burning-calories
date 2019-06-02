@@ -19,6 +19,12 @@
       <arg column="update_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
     </constructor>
   </resultMap>
+  <resultMap id="UserAvatar" type="com.burn.burningcalories.vo.UserAvatar">
+    <result column="id" property="userId" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+    <result column="username" property="username" javaType="java.lang.String" jdbcType="VARCHAR"/>
+    <result column="avatar_url" property="avatar" javaType="java.lang.String" jdbcType="VARCHAR"/>
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, username, password, gender, role, phone, email, height,weight,birth,avatar_url, backgurand_url, create_time,
     update_time
@@ -157,10 +163,16 @@
     where id = #{userId}
   </update>
 
-
   <update id="updateBackgurand" parameterType="map">
     update burning_user
     set avatar_url = #{url}
     where id = #{userId}
   </update>
+
+  <select id="getAvatarInfo" resultMap="UserAvatar" parameterType="integer">
+    select
+    id , username, avatar_url
+    from burning_user
+    where id = #{userId}
+  </select>
 </mapper>

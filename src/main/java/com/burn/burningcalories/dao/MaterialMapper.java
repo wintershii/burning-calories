@@ -8,4 +8,5 @@ public interface MaterialMapper {
     int insertSelective(Material record);
 
     Material getMaterialByEnName(String enName);
+
 }

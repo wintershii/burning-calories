@@ -1,6 +1,7 @@
 package com.burn.burningcalories.dao;
 
 import com.burn.burningcalories.domain.User;
+import com.burn.burningcalories.vo.UserAvatar;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,4 +19,6 @@ public interface UserMapper {
     int updateAvatar(@Param("url") String url, @Param("userId") Integer userId);
 
     int updateBackgurand(@Param("url") String url, @Param("userId") Integer userId);
+
+    UserAvatar getAvatarInfo(Integer userId);
 }
