@@ -97,6 +97,7 @@
     <include refid="Base_Column_List"/>
     from burning_food
     where user_id = #{userId}
+
   </select>
 
 

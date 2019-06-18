@@ -50,6 +50,11 @@ public class FoodController {
     public ServerResponse uploadFood(HttpSession  session, Integer userId, String foodname, Integer updateMethod,
                                      MultipartFile foodImage, Integer calories, Integer type, Date foodTime) {
         if (userId == null || foodname == null || updateMethod == null || foodImage == null || calories == null || type == null || foodTime == null) {
+
+            if (foodImage == null) {
+                System.out.println("文件为空");
+            }
+
             return ServerResponse.createByErrorMessage("参数错误!");
         }
         Integer realId = ((User)(session.getAttribute(Const.CURRENT_USER))).getId();
